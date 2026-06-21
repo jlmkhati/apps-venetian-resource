@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 澳门威尼斯人 · 杂志式介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f2f0;
+            font-family: "Georgia", "Noto Serif SC", "Songti SC", "Times New Roman", serif;
+            color: #2c2c2a;
+            line-height: 1.65;
+            padding: 2rem 1rem;
+        }
+
+        .page {
+            max-width: 1024px;
+            margin: 0 auto;
+            background: #fafaf8;
+            border-radius: 40px 40px 28px 28px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            padding: 2.5rem 2rem 2.8rem;
+        }
+
+        /* hero 横幅 — 杂志专题调性 */
+        .hero {
+            border-bottom: 1px solid #e2ddd6;
+            padding-bottom: 2rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .hero-tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #9b8f82;
+            margin-bottom: 0.75rem;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #3d3935;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            font-weight: 600;
+            color: #735e4f;
+        }
+
+        .hero p.sub {
+            font-size: 0.95rem;
+            color: #7a736b;
+            max-width: 70%;
+            border-left: 3px solid #c9b9a8;
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 卡片区 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e6e1da;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 450;
+            letter-spacing: 0.5px;
+            border-bottom: 1px dotted #d9d2c9;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            color: #3f3a33;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #5d5349;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .card p {
+            margin-bottom: 0.9rem;
+            color: #3c3834;
+        }
+
+        .card p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .inset-note {
+            background: #f7f5f1;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0 0.5rem;
+            font-size: 0.95rem;
+            border-left: 4px solid #b7a99a;
+        }
+
+        .inset-note strong {
+            color: #5a4a3a;
+        }
+
+        .faq-mini {
+            margin-top: 0.8rem;
+            list-style: none;
+        }
+
+        .faq-mini li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e0d9d0;
+        }
+
+        .faq-mini li:last-child {
+            border-bottom: none;
+        }
+
+        .faq-mini .q {
+            font-weight: 500;
+            color: #4e453c;
+        }
+
+        .faq-mini .a {
+            color: #5f574e;
+            font-size: 0.92rem;
+            margin-top: 0.15rem;
+            padding-left: 0.8rem;
+        }
+
+        /* 页尾提示区 */
+        .footer-note {
+            margin-top: 2.5rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e2ddd6;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem 0.5rem;
+        }
+
+        .footer-note p {
+            color: #5a534b;
+            font-size: 0.95rem;
+        }
+
+        .footer-note a {
+            color: #735e4f;
+            text-decoration: none;
+            border-bottom: 1px solid #cbb9a7;
+            transition: border-color 0.15s, color 0.15s;
+            font-weight: 400;
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #4a3f35;
+            color: #4a3f35;
+        }
+
+        .footer-visit {
+            background: #efeae3;
+            border-radius: 60px;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.92rem;
+            letter-spacing: 0.4px;
+            display: inline-block;
+        }
+
+        .footer-visit a {
+            border-bottom: none;
+        }
+
+        .meta-note {
+            font-size: 0.8rem;
+            color: #a0988e;
+            margin-top: 1.2rem;
+            text-align: right;
+            border-top: 1px solid #ede9e2;
+            padding-top: 1rem;
+            letter-spacing: 0.8px;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 680px) {
+            .page {
+                padding: 1.8rem 1.2rem;
+                border-radius: 28px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p.sub {
+                max-width: 100%;
+            }
+
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .footer-note {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 460px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .card h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 横幅 -->
+    <div class="hero">
+        <div class="hero-tag">资料专题 · 索引</div>
+        <h1>水城映像 · <span>澳门威尼斯人</span></h1>
+        <p class="sub">从运河到穹顶 — 一份以信息整理为线索的纸上纵深</p>
+    </div>
+
+    <div class="card-grid">
+
+        <!-- 卡片 1: 背景与资料边界 -->
+        <div class="card">
+            <h2>Ⅰ · 原始档案</h2>
+            <p>在检索任何地标之前，第一步通常是廓清概念边界。澳门威尼斯人并非单体建筑，而是一个综合度假村集群，包含酒店、会展中心、购物中心与娱乐场。其设计灵感取自意大利威尼斯，但内部功能与尺度完全服务于当代旅游与商业场景。从城市资料的角度看，这是一处将「异域风貌」与「本地运营」高度缝合的样本。</p>
+            <p>资料整理者往往需要区分「澳门威尼斯人」与「威尼斯人度假村」在行政称谓上的细微差异。前者常被用作项目统称，后者则特指酒店品牌体系。在英文语境中，<em>The Venetian Macao</em> 是标准官方名称，而中文资料的标引则更多以「澳门威尼斯人」作为主条目出现。</p>
+            <div class="inset-note">
+                <strong>索引节点</strong> · 建筑总面积约 98 万平方米，拥有 3,000 间套房，运河全长约 130 米（室内部分）。数据来源多为 2010 年代前后公开资料，近期扩建数据建议单独校验。
+            </div>
+        </div>
+
+        <!-- 卡片 2: 空间段落与信息层次 -->
+        <div class="card">
+            <h2>Ⅱ · 段落式观察</h2>
+            <h3>水面与回廊</h3>
+            <p>室内运河是多数资料最先提及的视觉锚点。贡多拉船夫的歌声与天幕投影形成了独特的室内气候——你头顶的「天空」始终停留在傍晚色调。这种环境控制技术最初应用于拉斯维加斯，在澳门被进一步放大。从信息整理的角度，运河系统属于「主题化基础设施」，它并非单纯的交通通道，而是动线叙事的一部分。</p>
+            <h3>穹顶与秩序</h3>
+            <p>大堂穹顶的壁画复制了威尼斯文艺复兴时期的局部元素，但整体构图更强调对称与奢华感。对于研究「仿建空间」的观察者来说，这里呈现了一种清晰的层级：建筑外壳是威尼斯风格，内部装饰却是泛欧式混合。资料索引时，建议同时关注其与拉斯维加斯威尼斯人酒店的异同——两者出自同一设计团队，但在尺度与功能侧重上已有分化。</p>
+            <p>三楼的大运河购物中心拥有超过 350 间商铺，其动线规划模仿了威尼斯街道的曲折感，但宽度经过重新计算以容纳客流。这类空间数据在旅游管理类文献中常有提及，但普通浏览者很少注意到走廊转弯半径与商铺密度的关系。</p>
+        </div>
+
+        <!-- 卡片 3: 使用场景与 FAQ 摘要 -->
+        <div class="card">
+            <h2>Ⅲ · 场景与常见问答</h2>
+            <p>许多初次来访者希望了解如何高效利用空间：从西翼大堂进入可以更快抵达酒店前台；运河游船的上船点位于购物中心三楼，且不同区域的船夫路线略有区别。对于非博彩访客，会展中心与剧场是独立动线，不必穿过娱乐场即可到达。这些细节在官方导览册中通常仅以平面图呈现，但结合实地反馈整理后更具可读性。</p>
+            <ul class="faq-mini">
+                <li>
+                    <span class="q">问：澳门威尼斯人是否只有博彩设施？</span>
+                    <div class="a">不。非博彩设施占比超过 70%，包括酒店、餐饮、购物、会展、剧院以及室内运河游览。许多家庭访客甚至不会经过博彩区域。</div>
+                </li>
+                <li>
+                    <span class="q">问：需要提前预约运河游船吗？</span>
+                    <div class="a">周末及节假日建议提前预约。平日现场排队通常在 20 分钟以内，但团体游客较多时等候时间可能延长。</div>
+                </li>
+                <li>
+                    <span class="q">问：资料中的“威尼斯人”与“澳门威尼斯人”是同一概念？</span>
+                    <div class="a">在多数中文语境中，两者混用。严格区分时，“威尼斯人”指品牌，“澳门威尼斯人”指澳门路氹的具体项目。</div>
+                </li>
+            </ul>
+            <div class="inset-note" style="margin-top: 1rem;">
+                <strong>整理贴士</strong> · 若需获取最新运营时间与活动日历，建议直接查阅官方信息平台。第三方介绍通常存在滞后，尤其涉及临时展览或施工区域时。
+            </div>
+        </div>
+    </div>
+
+    <!-- 页尾提示 + 必备链接 -->
+    <div class="footer-note">
+        <p>
+            本文档属于非官方资料索引。关于澳门威尼斯人的原始介绍与实时动态，请参阅 <a href="https://apps-venetian.com">澳门威尼斯人</a> 所提供的资讯页面。
+        </p>
+        <div class="footer-visit">
+            <a href="https://apps-venetian.com">澳门威尼斯人</a> · 信息参考
+        </div>
+    </div>
+
+    <div class="meta-note">
+        资料整理 · 基于公开文献与实地索引 &nbsp;·&nbsp; 2025
+    </div>
+
+</div>
+</body>
+</html>
