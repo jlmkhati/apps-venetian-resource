@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>日常翻阅 · 乐鱼</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background: linear-gradient(145deg, #fbe9e0 0%, #fadbd1 35%, #f7cec1 70%, #f0c0b2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.7;
+            color: #3d2c25;
+        }
+
+        .card {
+            max-width: 680px;
+            width: 100%;
+            background: #fffcf9;
+            border-radius: 40px 40px 32px 32px;
+            box-shadow: 0 20px 40px -12px rgba(120, 70, 50, 0.25), 0 8px 16px -8px rgba(0,0,0,0.08);
+            padding: 2.4rem 2rem 2.8rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1.2rem 0.9rem; }
+            .card { padding: 1.8rem 1.2rem 2.2rem; border-radius: 32px 32px 24px 24px; }
+        }
+
+        .hero-pull {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-pull p:first-child {
+            font-size: 1.3rem;
+            font-weight: 350;
+            letter-spacing: 0.02em;
+            color: #8b5e4c;
+            border-left: 3px solid #d9a692;
+            padding-left: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-pull .short-begin {
+            font-size: 2rem;
+            font-weight: 420;
+            line-height: 1.2;
+            color: #4a2f26;
+            background: linear-gradient(to right, #5f3c2e, #8b5e4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.1rem;
+        }
+
+        .quiet-divider {
+            width: 60px;
+            height: 3px;
+            background: #e5c3b6;
+            border-radius: 6px;
+            margin: 0.5rem 0 1.2rem 0;
+        }
+
+        .intro-block p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            font-weight: 350;
+            color: #4c3730;
+        }
+
+        .intro-block p:last-of-type {
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem 1.2rem;
+            margin: 1.8rem 0 1.6rem;
+        }
+
+        .feature-item {
+            flex: 1 1 170px;
+            background: #f9f1ec;
+            padding: 0.8rem 1rem 0.8rem 1.4rem;
+            border-radius: 60px 20px 20px 60px;
+            border-left: 4px solid #d9a692;
+            font-size: 0.98rem;
+            color: #3d2c25;
+            list-style: none;
+            box-shadow: inset 0 0 0 1px rgba(220, 180, 160, 0.3);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .feature-item:hover {
+            background: #efe3db;
+            transform: translateX(3px);
+        }
+
+        .scenario-note {
+            background: #f6ede8;
+            border-radius: 28px;
+            padding: 1rem 1.4rem;
+            margin: 1.3rem 0 1.8rem;
+            font-size: 0.96rem;
+            color: #4c3730;
+            box-shadow: inset 0 0 0 1px #e3cec3;
+        }
+
+        .scenario-note strong {
+            font-weight: 500;
+            color: #6f4a39;
+        }
+
+        .faq-mini {
+            margin: 1.5rem 0 1rem;
+            border-top: 1px dashed #decbc1;
+            padding-top: 1.2rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 440;
+            color: #5d3f32;
+            cursor: pointer;
+            padding: 0.3rem 0.2rem;
+            font-size: 0.95rem;
+            border-radius: 30px;
+            transition: background 0.15s;
+        }
+
+        .faq-mini summary:hover {
+            background: #f2e5dd;
+            padding-left: 0.6rem;
+        }
+
+        .faq-mini details p {
+            margin: 0.5rem 0 0.4rem 0.8rem;
+            font-size: 0.92rem;
+            color: #5a4037;
+            line-height: 1.6;
+        }
+
+        .gentle-footer {
+            margin-top: 2rem;
+            text-align: left;
+            border-top: 1px solid #eddcd2;
+            padding-top: 1.2rem;
+            font-size: 0.92rem;
+            color: #5f443a;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.3rem 0.5rem;
+        }
+
+        .gentle-footer a {
+            color: #7b5542;
+            background: #f3e6de;
+            padding: 0.15rem 0.9rem;
+            border-radius: 40px;
+            font-weight: 480;
+            text-decoration: none;
+            border: 1px solid #dec3b6;
+            transition: background 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .gentle-footer a:hover {
+            background: #e5cec1;
+            box-shadow: 0 2px 6px rgba(140, 90, 65, 0.2);
+            border-color: #c7a693;
+        }
+
+        .gentle-footer span {
+            opacity: 0.75;
+        }
+
+        @media (max-width: 420px) {
+            .feature-item {
+                flex: 1 1 100%;
+                border-radius: 40px 20px 20px 40px;
+                padding: 0.7rem 0.9rem 0.7rem 1.2rem;
+            }
+            .hero-pull .short-begin {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="hero-pull">
+            <p>随手翻开 · 比想象中多一点</p>
+            <div class="short-begin">靠近日常的参照</div>
+        </div>
+        <div class="quiet-divider"></div>
+
+        <div class="intro-block">
+            <p>
+                有时只是想知道某个说法是否常见，或者想找一段更平实的解释。翻几页、对比两种表述，心里就有数了。<strong>乐鱼</strong>并不是一个需要特意准备才能使用的工具——它更像一个常在手边的册子，在你想要确认、延伸或单纯翻阅的时候，刚好就在那里。
+            </p>
+            <p>
+                你大概也有过类似的时刻：读到一段话，感觉意思对，但想看看有没有更自然的说法；或者想从另一个角度理解同一个话题。这时候如果有一个轻松的对照入口，能顺着看下去，就省去了自己反复组合的功夫。慢慢地，这种对照式的浏览会变成一种习惯，像随手翻阅一本分类妥当的笔记。
+            </p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-item">🔄 对照浏览 · 自然并排</div>
+            <div class="feature-item">📖 延伸阅读 · 不跳脱</div>
+            <div class="feature-item">🔍 日常查询 · 轻量回应</div>
+            <div class="feature-item">📌 话题归类 · 随手可循</div>
+        </div>
+
+        <div class="scenario-note">
+            <strong>◈ 一个常见的场景</strong>：你在写一段介绍或整理一段说明，卡在某个表述上——是同义替换？还是换个语气？这时候打开 <a href="https://wap-china-leyu.com" style="color:#7b5542; background: #edd9ce; padding:0.1rem 0.6rem; border-radius:30px; text-decoration:none; font-weight:460; border:1px solid #dbbcac; transition:0.1s;">乐鱼</a>，顺着已有的条目看看相近的表达，往往几分钟就能找到更贴切的节奏。它不负责给出标准答案，但常常提供值得参考的对照。
+        </div>
+
+        <div class="faq-mini">
+            <details>
+                <summary>❓ 需要提前准备什么？</summary>
+                <p>不需要注册或配置。打开页面就是可浏览的状态，所有对照和条目都直接呈现。你只需要带着你想看的内容或问题来就行。</p>
+            </details>
+            <details>
+                <summary>📂 内容偏向哪些领域？</summary>
+                <p>涵盖日常表达、常见概念解析、以及一些跨领域的对照说明。不局限于单一类别，适合泛读和针对性查询。</p>
+            </details>
+            <details>
+                <summary>📱 手机上看方便吗？</summary>
+                <p>布局对手机浏览做了适应，卡片和文字在窄屏上会自动调整，不需要横向缩放。阅读体验偏向纸质书的舒适感。</p>
+            </details>
+        </div>
+
+        <div class="gentle-footer">
+            <span>通过对照与延伸，让阅读更安静</span>
+            <a href="https://wap-china-leyu.com">乐鱼</a>
+            <span>· 日常翻阅 ·</span>
+        </div>
+    </div>
+</body>
+</html>
