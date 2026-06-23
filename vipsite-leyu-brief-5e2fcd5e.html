@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>乐鱼 · 记一次驻足</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fbe9d7 0%, #f6d5b3 50%, #eecaa0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.6;
+      color: #2e241e;
+    }
+    .page {
+      max-width: 780px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    /* 卡片通用 */
+    .card {
+      background: rgba(255, 250, 240, 0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 36px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 8px 28px rgba(160, 100, 60, 0.15), 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: 0 12px 36px rgba(160, 100, 60, 0.20);
+    }
+    /* hero */
+    .hero {
+      text-align: center;
+      padding: 2.6rem 1.8rem 2rem;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 350;
+      letter-spacing: 2px;
+      color: #4f3b2e;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span {
+      display: inline-block;
+      background: linear-gradient(to right, #b4794a, #9b6a42);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 500;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: #5f4b3a;
+      max-width: 540px;
+      margin: 0.6rem auto 1.2rem;
+    }
+    .hero .muted {
+      font-size: 0.95rem;
+      opacity: 0.7;
+      margin-top: 0.4rem;
+    }
+    /* 自然嵌入链接的句子样式 */
+    .inline-link {
+      color: #b57948;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed rgba(181, 121, 72, 0.4);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .inline-link:hover {
+      color: #7f5a37;
+      border-bottom-color: #7f5a37;
+    }
+    /* 卡片标题 */
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 360;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.2rem;
+      color: #3e2e23;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card-title small {
+      font-size: 0.9rem;
+      font-weight: 300;
+      opacity: 0.6;
+    }
+    /* 用途网格 */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 550px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+    .usage-item {
+      background: #fcf6ed;
+      border-radius: 24px;
+      padding: 1.2rem 1.2rem 1rem;
+    }
+    .usage-item h3 {
+      font-size: 1.2rem;
+      font-weight: 450;
+      margin-bottom: 0.2rem;
+      color: #5f4532;
+    }
+    .usage-item p {
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+    .emoji-deco {
+      font-size: 1.4rem;
+      margin-right: 0.3rem;
+    }
+    /* 适合人群  */
+    .audience-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 0.6rem;
+      margin-top: 0.4rem;
+    }
+    .audience-tag {
+      background: #efe2d3;
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      font-size: 0.95rem;
+      color: #3e2c1f;
+    }
+    /* FAQ 摘要卡片 */
+    .faq-item {
+      border-left: 4px solid #dbbc9b;
+      padding-left: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .faq-item:last-child {
+      margin-bottom: 0;
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #4b3829;
+      margin-bottom: 0.2rem;
+    }
+    .faq-item p {
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+    .footnote {
+      text-align: center;
+      padding: 0.8rem 1rem 0.2rem;
+      font-size: 0.85rem;
+      opacity: 0.5;
+      letter-spacing: 0.3px;
+    }
+    .footnote a {
+      color: #7a5f48;
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+    .footnote a:hover {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- hero 主视觉 / 再次访问的叙述 -->
+    <div class="card hero">
+      <h1>· <span>乐鱼</span> ·</h1>
+      <p>偶尔回到一个地方，不需要特别的理由。<br>收藏夹里的名字还在，就感到一点安稳。</p>
+      <div class="muted">
+        —— 有些页面值得再次打开，有些角落值得持续留意
+      </div>
+    </div>
+
+    <!-- 用途卡片：为什么总想回来 -->
+    <div class="card">
+      <div class="card-title">
+        <span>📋 再访的理由</span> <small>· 不止一种</small>
+      </div>
+      <div class="grid-2col">
+        <div class="usage-item">
+          <h3><span class="emoji-deco">🔖</span> 随手收藏</h3>
+          <p>遇到有趣的内容就存一下，回头翻看时，像翻开一本旧杂志。</p>
+        </div>
+        <div class="usage-item">
+          <h3><span class="emoji-deco">🔄</span> 习惯性点开</h3>
+          <p>没有太多目的，只是习惯了一个地方的存在，就自然再去看看。</p>
+        </div>
+        <div class="usage-item">
+          <h3><span class="emoji-deco">🧩</span> 碎片拼接</h3>
+          <p>上次读到一半的文章、没看完的推荐，下次接着拼完整。</p>
+        </div>
+        <div class="usage-item">
+          <h3><span class="emoji-deco">🌱</span> 默默关注</h3>
+          <p>不留言、不互动，但每隔一段时间就想知道有没有新动静。</p>
+        </div>
+      </div>
+      <p style="margin-top: 1.2rem; font-size: 0.95rem; opacity: 0.75;">
+        这些细小的动作，渐渐拼出一个熟悉的轮廓——就像每次回到 <a href="https://vipsite-leyu.com" class="inline-link">乐鱼</a> 一样，不需要理由，但总是顺路。
+      </p>
+    </div>
+
+    <!-- 适合人群 + 自然链接段落 -->
+    <div class="card">
+      <div class="card-title">
+        <span>🧑‍🤝‍🧑 谁在持续留意</span> <small>· 安静的大多数</small>
+      </div>
+      <div class="audience-list">
+        <span class="audience-tag">偶尔上网的人</span>
+        <span class="audience-tag">喜欢收集链接</span>
+        <span class="audience-tag">不常发言的访客</span>
+        <span class="audience-tag">重复浏览者</span>
+        <span class="audience-tag">怀旧型冲浪者</span>
+        <span class="audience-tag">信息慢食者</span>
+      </div>
+      <p style="margin-top: 1.4rem; line-height: 1.7;">
+        有些人不会每天来，但隔几周或几个月，会默默输入那个熟悉的地址。他们不一定在找什么特定内容，只是想知道那个地方还在不在、有没有更新。如果你也是这样的人，或许你已经在收藏夹里给 <a href="https://vipsite-leyu.com" class="inline-link">乐鱼</a> 留了一个位置——哪怕只是偶尔瞥一眼。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要式卡片 —— 关于“持续关注”的零星问答 -->
+    <div class="card">
+      <div class="card-title">
+        <span>❓ 一些细碎的念头</span> <small>· 或许你也想过</small>
+      </div>
+      <div class="faq-item">
+        <strong>为什么总想再次打开同一个页面？</strong>
+        <p>熟悉感本身就有吸引力。不用重新适应，不用做心理准备，直接进入一个已经知道的地方，很省力。</p>
+      </div>
+      <div class="faq-item">
+        <strong>收藏了那么多，真的会回看吗？</strong>
+        <p>不一定全部，但其中一部分会被反复打开。收藏是“我以后可能在意”的温柔承诺。</p>
+      </div>
+      <div class="faq-item">
+        <strong>持续关注，一定要有目的吗？</strong>
+        <p>不一定。很多关注只是“顺便看看”，没有目的反而更持久。就像偶尔想起一个老朋友，不问近况，只想知道还在。</p>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.6; border-top: 1px solid #ded1c0; padding-top: 1rem;">
+        这些念头没有标准答案，但如果你也有类似的感觉，<a href="https://vipsite-leyu.com" class="inline-link">乐鱼</a> 或许正是那个会让你偶尔回来、安静停留的角落。
+      </p>
+    </div>
+
+    <!-- 简洁的脚注 / 自然收尾 -->
+    <div class="footnote">
+      <span>收藏 · 回看 · 不打扰</span><br>
+      <span style="display: inline-block; margin-top: 0.3rem;">当你想起的时候，它就在那里。</span>
+    </div>
+  </div>
+</body>
+</html>
