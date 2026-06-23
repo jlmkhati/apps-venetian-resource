@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼 · 信息卡片式介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0c1b33 0%, #152a4a 100%);
+      padding: 5rem 1.5rem 4.5rem;
+      text-align: center;
+      color: #e9f0fa;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -15%;
+      width: 70%;
+      height: 160%;
+      background: radial-gradient(circle at 30% 40%, rgba(56, 189, 248, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    .hero .sub {
+      max-width: 640px;
+      margin: 1.2rem auto 0;
+      font-size: 1.15rem;
+      color: #b2c9e6;
+      font-weight: 350;
+      position: relative;
+    }
+
+    /* 浅色正文区 */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3.2rem 1.8rem 4rem;
+    }
+
+    .intro-block {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2.8rem;
+    }
+
+    .intro-block p {
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .intro-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 强调色链接 – 融入句子 */
+    a {
+      color: #1264b0;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #0b4a83;
+      border-bottom-color: #0b4a83;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 2.8rem 0 2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.8rem 2.2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease, box-shadow 0.25s;
+      border: 1px solid #eef2f6;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: #0f2b44;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 0.96rem;
+      color: #334155;
+    }
+
+    .pill {
+      display: inline-block;
+      background: #e5edf8;
+      color: #1e3a5f;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.2rem 0.8rem;
+      border-radius: 100px;
+      margin-top: 0.6rem;
+    }
+
+    /* 适合人群特殊卡片 (宽) */
+    .audience-card {
+      grid-column: 1 / -1;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      border: 1px solid #eef2f6;
+      margin-top: 0.6rem;
+    }
+
+    .audience-card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #0f2b44;
+      margin-bottom: 0.9rem;
+    }
+
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.8rem;
+    }
+
+    .audience-tags span {
+      background: #f1f5f9;
+      padding: 0.3rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      color: #1e3a5f;
+    }
+
+    .faq-mini {
+      margin-top: 2.6rem;
+      padding: 1.5rem 0 0.2rem;
+      border-top: 1px solid #dfe6ef;
+    }
+
+    .faq-mini h4 {
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #0f2b44;
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-mini p {
+      font-size: 0.96rem;
+      color: #334155;
+      margin-bottom: 0.9rem;
+    }
+
+    .faq-mini .summary-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-mini .summary-item strong {
+      font-weight: 500;
+      color: #1e3a5f;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .hero {
+        padding: 3.4rem 1.2rem 2.8rem;
+      }
+      .content {
+        padding: 2rem 1rem 3rem;
+      }
+      .intro-block {
+        padding: 1.8rem 1.5rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .audience-card {
+        padding: 1.6rem 1.2rem;
+      }
+      .audience-tags {
+        gap: 0.6rem 1rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .intro-block p {
+        font-size: 0.97rem;
+      }
+      .card h3 {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* 文本内嵌入链接自然 */
+    .natural-link {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <section class="hero">
+    <h1>乐鱼 · 快速识别</h1>
+    <div class="sub">
+      一套围绕信息整理与内容衔接而设计的功能聚合，帮你更清晰理解站点用途。
+    </div>
+  </section>
+
+  <!-- 浅色正文区：信息卡片式 -->
+  <div class="content">
+
+    <!-- 主视觉 + 开篇承接 -->
+    <div class="intro-block">
+      <p>
+        当你首次来到一个不熟悉的网站，最直接的需求往往是弄清它能做什么、适不适合自己。
+        <strong>乐鱼</strong> 的页面逻辑围绕“快速定位”展开——通过模块化卡片和专项说明，让访问者不必反复切换页面便能获得整体轮廓。
+      </p>
+      <p>
+        下文从功能用途、适用人群以及日常使用场景三个维度展开，你可以根据自身兴趣依次阅读，也可直接跳到感兴趣的卡片。需要了解完整信息时，随时可以回到 <a href="https://vipzh-leyu.com">乐鱼</a> 主站做进一步探索。
+      </p>
+    </div>
+
+    <!-- 用途卡片（网格，2列） -->
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>内容快速查阅</h3>
+        <p>信息以卡片、列表或简明段落呈现，减少冗长文本对阅读的干扰。用户可依据标题或摘要直接判断是否深入查看。</p>
+        <span class="pill">信息聚合</span>
+      </div>
+
+      <div class="card">
+        <h3>分类与引导</h3>
+        <p>通过场景标签和功能分区，帮助访问者按自身需求（了解背景、查看特点、寻找适用人群）进入对应模块。</p>
+        <span class="pill">导航辅助</span>
+      </div>
+
+    </div>
+
+    <!-- 适合人群（宽卡片） -->
+    <div class="audience-card">
+      <h3>适合哪些人阅读？</h3>
+      <div class="audience-tags">
+        <span>初次了解站点的访客</span>
+        <span>需要快速评估用途的用户</span>
+        <span>对比不同功能的人</span>
+        <span>对信息结构敏感的研究者</span>
+        <span>内容创作者 / 编辑</span>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.95rem; color: #334155;">
+        无论你属于哪一类，乐鱼的页面设计都尽量让信息一目了然。如果你已经在使用 <a href="https://vipzh-leyu.com">乐鱼</a>，这里的卡片摘要也能帮你回顾各项要点。
+      </p>
+    </div>
+
+    <!-- 自然链接段落 + 场景提示 (嵌入主站链接) -->
+    <div style="margin: 2rem 0 1.2rem; background: #ffffff; border-radius: 20px; padding: 1.8rem 2rem; border: 1px solid #eef2f6;">
+      <h3 style="font-weight: 500; font-size: 1.2rem; color: #0f2b44; margin-bottom: 0.6rem;">常见场景举例</h3>
+      <p style="margin-bottom: 0.8rem;">
+        假设你想了解某个功能是否匹配自己的需求，可以先看页面中的用途卡片；若需要更具体的背景信息，再顺着段落内嵌的链接进入详情。例如，从 <a href="https://vipzh-leyu.com">乐鱼</a> 的首页出发，可以逐步深入每个模块的内容说明。
+      </p>
+      <p style="color: #475569;">
+        另一种常见场景是快速对比：同时打开多个卡片，通过标题和关键词初步筛选。对于信息量较大的页面，这种卡片式结构能有效降低浏览负担。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要（非完整FAQ，只是提示性摘要） -->
+    <div class="faq-mini">
+      <h4>可能关心的问题</h4>
+      <div class="summary-item">
+        <strong>· 信息是否经常更新？</strong>
+        <p>乐鱼页面内容会随站点功能迭代而调整，卡片和段落描述保持与主站同步。你可以定期回看 <a href="https://vipzh-leyu.com">乐鱼</a> 了解最新情况。</p>
+      </div>
+      <div class="summary-item">
+        <strong>· 卡片式介绍能覆盖所有内容吗？</strong>
+        <p>卡片主要提炼典型用途与人群，更完整的信息仍以主站页面为准。如果你发现未覆盖到的场景，欢迎通过站点内提供的渠道反馈。</p>
+      </div>
+      <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #64748b;">
+        以上摘要旨在提供快速参考，更详细说明请直接参阅 <a href="https://vipzh-leyu.com">乐鱼</a> 对应页面。
+      </p>
+    </div>
+
+    <!-- 结尾自然收束 -->
+    <div style="text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 0.9rem;">
+      信息卡片式 · 乐鱼介绍页
+    </div>
+
+  </div>
+
+</body>
+</html>
